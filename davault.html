@@ -1,0 +1,1503 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07152f" />
+    <meta
+      name="description"
+      content="Davault Defi — a modern concept for exploring digital assets, portfolio tools and crypto exchange."
+    />
+    <title>Davault Defi — The Global Decentralized Wall</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: "#07152f",
+              midnight: "#040c1d",
+              bluebrand: "#2563eb",
+              aqua: "#5eead4",
+              mist: "#f4f7fc",
+            },
+            boxShadow: {
+              glow: "0 0 70px rgba(37,99,235,.23)",
+              card: "0 18px 60px rgba(2,12,35,.08)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      .hero-grid {
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          );
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 92%);
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: ticker 32s linear infinite;
+      }
+      .ticker-track:hover {
+        animation-play-state: paused;
+      }
+      @keyframes ticker {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .orb {
+        filter: blur(65px);
+      }
+      .phone {
+        background: linear-gradient(145deg, #152747, #060d1c 65%);
+        box-shadow:
+          0 35px 100px rgba(0, 0, 0, 0.48),
+          0 0 55px rgba(37, 99, 235, 0.14);
+      }
+      .chart-line {
+        stroke-dasharray: 700;
+        stroke-dashoffset: 700;
+        animation: draw 2.4s ease forwards 0.3s;
+      }
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-slate-900 antialiased">
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white backdrop-blur-xl"
+    >
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
+        aria-label="Main navigation"
+      >
+        <a
+          href="#home"
+          class="flex items-center gap-3"
+          aria-label="Davault Defi home"
+        >
+          <span
+            class="grid h-10 w-10 place-items-center rounded-xl bg-blue-600 shadow-lg shadow-blue-600/30"
+          >
+            <svg
+              viewBox="0 0 40 40"
+              class="h-7 w-7"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 9h13a11 11 0 1 1 0 22H7V9Z"
+                stroke="white"
+                stroke-width="3.5"
+              />
+              <path d="M14 16h7a4 4 0 1 1 0 8h-7v-8Z" fill="#5eead4" />
+            </svg>
+          </span>
+          <span class="text-xl font-extrabold tracking-tight"
+            >Davault<span class="text-blue-400"> Defi</span></span
+          >
+        </a>
+
+        <div
+          class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex"
+        >
+          <a class="transition hover:text-white" href="#features">Features</a>
+          <a class="transition hover:text-white" href="#plans">Plans</a>
+          <a class="transition hover:text-white" href="#security">Security</a>
+          <a class="transition hover:text-white" href="#about">About</a>
+          <a class="transition hover:text-white" href="#support">Support</a>
+        </div>
+
+        <div class="hidden items-center gap-3 md:flex">
+          <a
+            href="#login"
+            class="rounded-full px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+            >Login</a
+          >
+          <a
+            href="#get-started"
+            class="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500"
+            >Get Started <span aria-hidden="true">↗</span></a
+          >
+        </div>
+
+        <button
+          id="menu-toggle"
+          class="grid h-10 w-10 place-items-center rounded-lg border border-white/15 md:hidden"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg
+            id="menu-icon"
+            viewBox="0 0 24 24"
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-white/10 px-5 pb-5 pt-3 md:hidden"
+      >
+        <div class="flex flex-col gap-1 text-sm text-slate-200">
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#features"
+            >Features</a
+          >
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#plans"
+            >Plans</a
+          >
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#security"
+            >Security</a
+          >
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#about"
+            >About</a
+          >
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#support"
+            >Support</a
+          >
+          <div class="mt-3 grid grid-cols-2 gap-3">
+            <a
+              href="#login"
+              class="rounded-full border border-white/20 py-3 text-center font-semibold"
+              >Login</a
+            >
+            <a
+              href="#get-started"
+              class="rounded-full bg-blue-600 py-3 text-center font-semibold"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        id="home"
+        class="relative isolate overflow-hidden bg-navy text-white"
+      >
+        <div class="hero-grid absolute inset-0 -z-10"></div>
+        <div
+          class="orb absolute -right-32 top-16 -z-10 h-96 w-96 rounded-full bg-blue-600/30"
+        ></div>
+        <div
+          class="orb absolute -left-36 bottom-0 -z-10 h-72 w-72 rounded-full bg-cyan-500/10"
+        ></div>
+
+        <div
+          class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 sm:py-24 lg:grid-cols-2 lg:gap-8 lg:px-8 lg:py-28"
+        >
+          <div class="relative z-10">
+            <div
+              class="mb-7 inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-400/10 px-4 py-2 text-xs font-semibold tracking-wide text-blue-200"
+            >
+              <span class="h-2 w-2 rounded-full bg-aqua"></span>
+              A NEW PERSPECTIVE ON DIGITAL ASSETS
+            </div>
+
+            <h1
+              class="max-w-2xl text-5xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl"
+            >
+              The Global<br />
+              Decentralized<br />
+              <span
+                class="bg-gradient-to-r from-blue-400 via-cyan-300 to-aqua bg-clip-text text-transparent"
+                >Wall.</span
+              >
+            </h1>
+
+            <p
+              class="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl"
+            >
+              Making Crypto Exchange Easier. Exchange Cryptos, Anytime,
+              Anywhere.
+            </p>
+
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#get-started"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 font-bold shadow-xl shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-500"
+              >
+                Create Account <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#login"
+                class="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-4 font-bold transition hover:bg-white/10"
+                >Login to Account</a
+              >
+            </div>
+
+            <div
+              class="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-slate-400"
+            >
+              <span class="flex items-center gap-2"
+                ><span class="text-aqua">✓</span> Portfolio overview</span
+              >
+              <span class="flex items-center gap-2"
+                ><span class="text-aqua">✓</span> Simple asset tracking</span
+              >
+              <span class="flex items-center gap-2"
+                ><span class="text-aqua">✓</span> Designed for mobile</span
+              >
+            </div>
+            <p class="mt-5 max-w-lg text-xs leading-5 text-slate-500">
+              Concept landing page. Trading, custody, deposits and withdrawals
+              are not enabled by this demo.
+            </p>
+          </div>
+
+          <!-- CSS/SVG smartphone mockup -->
+          <div class="relative mx-auto w-full max-w-lg">
+            <div
+              class="absolute inset-12 rounded-full bg-blue-500/20 blur-3xl"
+            ></div>
+
+            <div
+              class="relative flex items-center justify-center gap-4 sm:gap-6"
+            >
+              <div
+                class="absolute -left-1 top-16 z-10 hidden rounded-2xl border border-white/10 bg-white/10 p-4 shadow-xl backdrop-blur-lg sm:block"
+              >
+                <p class="text-xs text-slate-300">Portfolio balance</p>
+                <p class="mt-1 text-xl font-bold">$12,840.50</p>
+                <p class="mt-1 text-xs text-aqua">
+                  +4.28% <span class="text-slate-400">illustrative</span>
+                </p>
+              </div>
+
+              <div
+                class="phone relative w-[270px] rounded-[2.7rem] border-[5px] border-slate-700/80 p-3"
+              >
+                <div
+                  class="absolute left-1/2 top-2 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-black"
+                ></div>
+                <div
+                  class="overflow-hidden rounded-[2.1rem] bg-[#09152b] px-4 pb-6 pt-9"
+                >
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-xs text-slate-400">Welcome back</p>
+                      <p class="mt-1 text-sm font-bold">Your portfolio</p>
+                    </div>
+                    <div
+                      class="grid h-9 w-9 place-items-center rounded-full bg-blue-500/20 text-blue-300"
+                    >
+                      D
+                    </div>
+                  </div>
+
+                  <div
+                    class="mt-6 rounded-2xl border border-white/5 bg-gradient-to-br from-blue-600 to-blue-900 p-4"
+                  >
+                    <p class="text-xs text-blue-100/80">Total balance · Demo</p>
+                    <p class="mt-2 text-2xl font-extrabold tracking-tight">
+                      $24,680.80
+                    </p>
+                    <div class="mt-3 flex items-center justify-between text-xs">
+                      <span
+                        class="rounded-full bg-white/10 px-2 py-1 text-blue-100"
+                        >Illustrative data</span
+                      >
+                      <span class="text-aqua">+2.45%</span>
+                    </div>
+                    <svg
+                      viewBox="0 0 230 60"
+                      class="mt-3 h-14 w-full"
+                      fill="none"
+                      aria-label="Illustrative portfolio chart"
+                    >
+                      <path
+                        d="M0 48 C18 43 20 20 40 30 S65 47 84 25 S112 37 133 15 S164 33 183 17 S211 15 230 3"
+                        stroke="#5eead4"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M0 48 C18 43 20 20 40 30 S65 47 84 25 S112 37 133 15 S164 33 183 17 S211 15 230 3 V60 H0Z"
+                        fill="url(#area)"
+                        opacity=".18"
+                      />
+                      <defs>
+                        <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+                          <stop stop-color="#5eead4" />
+                          <stop
+                            offset="1"
+                            stop-color="#5eead4"
+                            stop-opacity="0"
+                          />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+
+                  <div class="mt-5 flex items-center justify-between">
+                    <p class="text-sm font-bold">My assets</p>
+                    <span class="text-xs text-blue-300">View all</span>
+                  </div>
+
+                  <div class="mt-3 space-y-3">
+                    <div
+                      class="flex items-center gap-3 rounded-xl bg-white/[0.035] p-3"
+                    >
+                      <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-orange-500/15 text-lg text-orange-400"
+                        >₿</span
+                      >
+                      <div class="min-w-0 flex-1">
+                        <p class="text-sm font-semibold">Bitcoin</p>
+                        <p class="text-xs text-slate-400">BTC</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="text-sm font-semibold">$8,420</p>
+                        <p class="text-xs text-aqua">+1.84%</p>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 rounded-xl bg-white/[0.035] p-3"
+                    >
+                      <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-indigo-500/15 text-lg text-indigo-300"
+                        >◆</span
+                      >
+                      <div class="min-w-0 flex-1">
+                        <p class="text-sm font-semibold">Ethereum</p>
+                        <p class="text-xs text-slate-400">ETH</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="text-sm font-semibold">$4,160</p>
+                        <p class="text-xs text-aqua">+0.92%</p>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 rounded-xl bg-white/[0.035] p-3"
+                    >
+                      <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-emerald-500/15 text-lg text-emerald-300"
+                        >$</span
+                      >
+                      <div class="min-w-0 flex-1">
+                        <p class="text-sm font-semibold">Stablecoin</p>
+                        <p class="text-xs text-slate-400">USDT</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="text-sm font-semibold">$2,100</p>
+                        <p class="text-xs text-slate-400">Demo</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-5 grid grid-cols-2 gap-3">
+                    <a
+                      href="#get-started"
+                      class="rounded-xl bg-blue-600 py-3 text-center text-xs font-bold transition hover:bg-blue-500"
+                      >Buy crypto</a
+                    >
+                    <a
+                      href="#features"
+                      class="rounded-xl border border-white/10 py-3 text-center text-xs font-bold transition hover:bg-white/5"
+                      >My portfolio</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="absolute -bottom-3 -right-1 z-10 hidden rounded-2xl border border-white/10 bg-[#132440]/95 p-4 shadow-xl backdrop-blur-lg sm:block"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-400/10 text-emerald-300"
+                    >↗</span
+                  >
+                  <div>
+                    <p class="text-xs text-slate-400">Asset movement</p>
+                    <p class="mt-1 text-sm font-bold">Market overview</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Market ticker -->
+      <section
+        class="overflow-hidden border-y border-slate-200 bg-white py-5"
+        aria-label="Illustrative market ticker"
+      >
+        <div
+          class="mx-auto mb-3 flex max-w-7xl items-center gap-2 px-5 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 lg:px-8"
+        >
+          <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+          Illustrative market watch · Not live prices
+        </div>
+        <div class="overflow-hidden">
+          <div id="ticker-track" class="ticker-track">
+            <div id="ticker-items" class="flex shrink-0 items-center"></div>
+            <div
+              id="ticker-items-copy"
+              class="flex shrink-0 items-center"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust strip -->
+      <section class="bg-mist py-8">
+        <div
+          class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-5 text-center sm:grid-cols-4 lg:px-8"
+        >
+          <div>
+            <p class="text-2xl font-extrabold text-navy">24/7</p>
+            <p class="mt-1 text-xs text-slate-500">Support concept</p>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold text-navy">One view</p>
+            <p class="mt-1 text-xs text-slate-500">Portfolio overview</p>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold text-navy">Mobile</p>
+            <p class="mt-1 text-xs text-slate-500">Designed for any screen</p>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold text-navy">Your pace</p>
+            <p class="mt-1 text-xs text-slate-500">Explore digital assets</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why choose us -->
+      <section id="about" class="py-20 sm:py-28">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <p
+              class="text-xs font-bold uppercase tracking-[.22em] text-blue-600"
+            >
+              Why Davault Defi
+            </p>
+            <h2
+              class="mt-4 text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+            >
+              Built around what matters.
+            </h2>
+            <p class="mt-5 leading-7 text-slate-500">
+              A simpler way to explore the digital asset landscape, with
+              transparency, accessibility and responsible design at the center.
+            </p>
+          </div>
+
+          <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <article
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card"
+            >
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-blue-50 text-blue-600"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold text-navy">
+                Transparency first
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500">
+                Clear product information and accessible documentation help
+                people understand what a platform offers before they make
+                decisions.
+              </p>
+            </article>
+
+            <article
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card"
+            >
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-indigo-50 text-indigo-600"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="3" y="4" width="18" height="16" rx="3" />
+                  <path d="M8 8h8M8 12h5M8 16h3" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold text-navy">
+                Technology-driven tools
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500">
+                A modern interface concept for exploring digital assets,
+                reviewing portfolio activity and navigating blockchain-related
+                products.
+              </p>
+            </article>
+
+            <article
+              id="security"
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card"
+            >
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-600"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold text-navy">
+                Security-conscious design
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500">
+                Security features should be verifiable. Custody controls,
+                encryption, insurance and any deposit protections must be
+                confirmed for the actual service.
+              </p>
+            </article>
+
+            <article
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card"
+            >
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-50 text-amber-600"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle cx="9" cy="8" r="3" />
+                  <circle cx="17" cy="9" r="2" />
+                  <path d="M3 20v-2a6 6 0 0 1 12 0v2M16 15a4 4 0 0 1 5 4v1" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold text-navy">
+                A community for everyone
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500">
+                Intuitive navigation and straightforward educational content can
+                make digital-asset concepts easier for newcomers to explore.
+              </p>
+            </article>
+
+            <article
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card"
+            >
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-sky-50 text-sky-600"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path
+                    d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold text-navy">
+                Support that stays accessible
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500">
+                A support-first experience can combine clear help articles,
+                contact channels and assistance for common account questions.
+              </p>
+            </article>
+
+            <article class="rounded-3xl bg-navy p-7 text-white shadow-glow">
+              <div
+                class="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-aqua"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path d="M12 3v18M3 12h18" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-bold">
+                More control, more clarity.
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-slate-300">
+                Explore the interface concept and learn how digital-asset tools
+                could fit into your financial workflow.
+              </p>
+              <a
+                href="#features"
+                class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-aqua hover:text-white"
+                >Explore features <span>→</span></a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="overflow-hidden bg-mist py-20 sm:py-28">
+        <div
+          class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8"
+        >
+          <div>
+            <p
+              class="text-xs font-bold uppercase tracking-[.22em] text-blue-600"
+            >
+              A clearer overview
+            </p>
+            <h2
+              class="mt-4 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl"
+            >
+              Your digital assets. One intuitive experience.
+            </h2>
+            <p class="mt-5 max-w-xl leading-7 text-slate-500">
+              Thoughtful tools can make it easier to review holdings, plan
+              recurring investments and manage account settings in one place.
+            </p>
+
+            <div class="mt-9 space-y-7">
+              <div class="flex gap-4">
+                <div
+                  class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-blue-600 shadow-sm"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path d="M3 3v18h18" />
+                    <path d="m7 14 4-4 4 3 5-7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy">Manage your portfolio</h3>
+                  <p class="mt-1 text-sm leading-6 text-slate-500">
+                    Review a unified overview of digital currencies and follow
+                    portfolio changes.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-blue-600 shadow-sm"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy">Recurring buys</h3>
+                  <p class="mt-1 text-sm leading-6 text-slate-500">
+                    Plan a daily, weekly or monthly purchase schedule, subject
+                    to supported assets and actual product availability.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-blue-600 shadow-sm"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <rect x="4" y="10" width="16" height="11" rx="2" />
+                    <path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy">Vault protection concept</h3>
+                  <p class="mt-1 text-sm leading-6 text-slate-500">
+                    Time-delayed withdrawals and additional approval steps can
+                    help reduce certain account risks when properly implemented.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-blue-600 shadow-sm"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <rect x="6" y="2" width="12" height="20" rx="2" />
+                    <path d="M10 18h4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy">A mobile-ready experience</h3>
+                  <p class="mt-1 text-sm leading-6 text-slate-500">
+                    Responsive layouts for checking your dashboard across
+                    phones, tablets and desktop screens.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-blue-200/60 to-cyan-100/60 blur-2xl"
+            ></div>
+            <div
+              class="relative rounded-[2rem] border border-white bg-white p-5 shadow-card sm:p-8"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-100 pb-5"
+              >
+                <div>
+                  <p class="text-sm font-bold text-navy">Portfolio overview</p>
+                  <p class="mt-1 text-xs text-slate-400">
+                    Illustrative dashboard
+                  </p>
+                </div>
+                <span
+                  class="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700"
+                  >Demo</span
+                >
+              </div>
+
+              <div class="mt-6">
+                <p class="text-sm text-slate-500">Estimated portfolio value</p>
+                <div class="mt-1 flex flex-wrap items-baseline gap-3">
+                  <span
+                    class="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl"
+                    >$38,420.65</span
+                  >
+                  <span class="text-sm font-bold text-emerald-600">+3.62%</span>
+                </div>
+              </div>
+
+              <div class="mt-7 rounded-2xl bg-slate-50 p-3 sm:p-4">
+                <svg
+                  viewBox="0 0 500 190"
+                  class="w-full"
+                  fill="none"
+                  role="img"
+                  aria-label="Illustrative rising portfolio line chart"
+                >
+                  <g stroke="#e2e8f0" stroke-dasharray="4 6">
+                    <path d="M0 35H500M0 80H500M0 125H500M0 170H500" />
+                  </g>
+                  <path
+                    d="M0 150 C25 140 37 146 58 126 S95 137 115 108 S149 120 172 86 S209 107 234 79 S275 95 296 59 S334 82 356 51 S398 67 417 39 S459 52 500 18 L500 180 L0 180Z"
+                    fill="url(#chartfill)"
+                    opacity=".6"
+                  />
+                  <path
+                    class="chart-line"
+                    d="M0 150 C25 140 37 146 58 126 S95 137 115 108 S149 120 172 86 S209 107 234 79 S275 95 296 59 S334 82 356 51 S398 67 417 39 S459 52 500 18"
+                    stroke="#2563eb"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="chartfill"
+                      x1="250"
+                      y1="15"
+                      x2="250"
+                      y2="180"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#60a5fa" />
+                      <stop offset="1" stop-color="#dbeafe" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div
+                  class="mt-2 flex justify-between text-[10px] font-medium text-slate-400"
+                >
+                  <span>MON</span><span>TUE</span><span>WED</span
+                  ><span>THU</span><span>FRI</span><span>SAT</span
+                  ><span>SUN</span>
+                </div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-xl border border-slate-100 p-3">
+                  <p class="text-xs text-slate-400">Bitcoin</p>
+                  <p class="mt-2 text-sm font-bold text-navy">$18,240</p>
+                  <p class="mt-1 text-xs text-emerald-600">+2.1%</p>
+                </div>
+                <div class="rounded-xl border border-slate-100 p-3">
+                  <p class="text-xs text-slate-400">Ethereum</p>
+                  <p class="mt-2 text-sm font-bold text-navy">$12,100</p>
+                  <p class="mt-1 text-xs text-emerald-600">+1.4%</p>
+                </div>
+                <div class="rounded-xl border border-slate-100 p-3">
+                  <p class="text-xs text-slate-400">Other</p>
+                  <p class="mt-2 text-sm font-bold text-navy">$8,080</p>
+                  <p class="mt-1 text-xs text-slate-500">Demo</p>
+                </div>
+              </div>
+              <p class="mt-4 text-center text-[11px] leading-5 text-slate-400">
+                All values and performance figures are fictional UI
+                placeholders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Illustrative investment plans -->
+      <section id="plans" class="bg-white px-5 py-20 sm:py-28">
+        <div class="mx-auto max-w-7xl lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <p
+              class="text-xs font-bold uppercase tracking-[.22em] text-blue-600"
+            >
+              Choose your path to wealth
+            </p>
+            <h2
+              class="mt-4 text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
+            >
+              Tiered investment plans
+            </h2>
+            <p class="mt-5 leading-7 text-slate-500">
+              Compare three sample plan concepts. Select a tier to preview it;
+              no funds are accepted and no investment is created.
+            </p>
+          </div>
+
+          <div class="mt-12 grid items-stretch gap-6 lg:grid-cols-3">
+            <article
+              data-plan-card
+              class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card transition"
+            >
+              <p
+                class="text-sm font-bold uppercase tracking-wider text-slate-500"
+              >
+                Basic
+              </p>
+              <p class="mt-5 text-4xl font-extrabold text-navy">
+                1.50%<span class="ml-2 text-sm font-semibold text-slate-500"
+                  >daily sample rate</span
+                >
+              </p>
+              <p class="mt-2 text-sm text-slate-500">30-day term</p>
+              <ul
+                class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
+              >
+                <li class="flex justify-between gap-4">
+                  <span>Minimum deposit</span><strong>$100</strong>
+                </li>
+                <li class="flex justify-between gap-4">
+                  <span>Withdrawal access</span><strong>Instant*</strong>
+                </li>
+                <li class="flex justify-between gap-4">
+                  <span>Plan duration</span><strong>30 days</strong>
+                </li>
+              </ul>
+              <button
+                type="button"
+                data-plan="Basic"
+                aria-pressed="false"
+                class="mt-8 w-full rounded-xl border border-slate-300 px-5 py-3.5 font-bold text-navy transition hover:border-blue-500 hover:bg-blue-50"
+              >
+                Select Basic
+              </button>
+            </article>
+
+            <article
+              class="relative rounded-2xl bg-gradient-to-br from-cyan-300 via-blue-600 to-emerald-300 p-[2px] shadow-[0_0_34px_rgba(37,99,235,.24)]"
+            >
+              <div
+                data-plan-card
+                class="flex h-full flex-col rounded-[calc(1rem-2px)] bg-white p-7 transition"
+              >
+                <span
+                  class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-1.5 text-xs font-extrabold text-white shadow-lg shadow-blue-600/30"
+                  >Most Popular</span
+                >
+                <p
+                  class="mt-2 text-sm font-bold uppercase tracking-wider text-blue-700"
+                >
+                  Silver
+                </p>
+                <p class="mt-5 text-4xl font-extrabold text-navy">
+                  1.80%<span class="ml-2 text-sm font-semibold text-slate-500"
+                    >daily sample rate</span
+                  >
+                </p>
+                <p class="mt-2 text-sm text-slate-500">30-day term</p>
+                <ul
+                  class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
+                >
+                  <li class="flex justify-between gap-4">
+                    <span>Minimum deposit</span><strong>$1,000</strong>
+                  </li>
+                  <li class="flex justify-between gap-4">
+                    <span>Withdrawal access</span><strong>Instant*</strong>
+                  </li>
+                  <li class="flex justify-between gap-4">
+                    <span>Plan duration</span><strong>30 days</strong>
+                  </li>
+                </ul>
+                <button
+                  type="button"
+                  data-plan="Silver"
+                  aria-pressed="false"
+                  class="mt-8 w-full rounded-xl bg-blue-600 px-5 py-3.5 font-bold text-white transition hover:bg-blue-500"
+                >
+                  Select Silver
+                </button>
+              </div>
+            </article>
+
+            <article
+              data-plan-card
+              class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card transition"
+            >
+              <p
+                class="text-sm font-bold uppercase tracking-wider text-slate-500"
+              >
+                Diamond
+              </p>
+              <p class="mt-5 text-4xl font-extrabold text-navy">
+                2.10%<span class="ml-2 text-sm font-semibold text-slate-500"
+                  >daily sample rate</span
+                >
+              </p>
+              <p class="mt-2 text-sm text-slate-500">30-day term</p>
+              <ul
+                class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
+              >
+                <li class="flex justify-between gap-4">
+                  <span>Minimum deposit</span><strong>$5,000</strong>
+                </li>
+                <li class="flex justify-between gap-4">
+                  <span>Withdrawal access</span><strong>Instant*</strong>
+                </li>
+                <li class="flex justify-between gap-4">
+                  <span>Plan duration</span><strong>30 days</strong>
+                </li>
+              </ul>
+              <button
+                type="button"
+                data-plan="Diamond"
+                aria-pressed="false"
+                class="mt-8 w-full rounded-xl border border-slate-300 px-5 py-3.5 font-bold text-navy transition hover:border-blue-500 hover:bg-blue-50"
+              >
+                Select Diamond
+              </button>
+            </article>
+          </div>
+
+          <p
+            id="plan-selection"
+            class="mt-6 text-center text-sm font-semibold text-blue-800"
+            role="status"
+            aria-live="polite"
+          >
+            Choose a plan to preview your selection. Demo only; no investment is
+            created.
+          </p>
+          <p
+            class="mx-auto mt-5 max-w-4xl text-center text-xs leading-6 text-slate-500"
+          >
+            *All rates, deposit thresholds, terms and withdrawal claims shown
+            here are fictional UI examples, not actual offers or guaranteed
+            returns. Daily returns at these levels would involve extraordinary
+            risk. No real deposits, trading or withdrawals are available in this
+            demo. Never invest based on promised returns; verify any provider
+            and consult an independent financial professional.
+          </p>
+        </div>
+      </section>
+
+      <!-- Call to action -->
+      <section id="get-started" class="px-5 py-20 sm:py-24">
+        <div
+          class="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-navy px-6 py-14 text-white sm:px-12 sm:py-16 lg:px-16"
+        >
+          <div
+            class="absolute -right-20 -top-32 h-96 w-96 rounded-full bg-blue-600/30 blur-3xl"
+          ></div>
+          <div
+            class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl"
+          ></div>
+
+          <div
+            class="relative grid items-center gap-10 lg:grid-cols-[1.2fr_.8fr]"
+          >
+            <div>
+              <span
+                class="inline-flex rounded-full border border-aqua/20 bg-aqua/10 px-4 py-2 text-xs font-semibold text-aqua"
+                >Your next chapter starts here</span
+              >
+              <h2
+                class="mt-6 max-w-2xl text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl"
+              >
+                Cash out money anytime, without any charge.*
+              </h2>
+              <p class="mt-5 max-w-xl leading-7 text-slate-300">
+                Explore a simpler way to navigate your digital-asset experience.
+                Actual withdrawal availability, processing times and fees depend
+                on the live service and applicable network costs.
+              </p>
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#login"
+                  class="inline-flex items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 text-navy transition hover:bg-slate-100"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 2.5 14.4 12 3 21.5c-.3-.2-.5-.6-.5-1V3.5c0-.4.2-.8.5-1Z"
+                    />
+                    <path d="m16 13.3 3.6 2.1-4.4 2.6-3.4-3.5L16 13.3Z" />
+                    <path d="m11.8 9.5 3.4-3.5 4.4 2.6-3.6 2.1-4.2-1.2Z" />
+                  </svg>
+                  <span class="text-left"
+                    ><span class="block text-[10px]">GET IT ON</span
+                    ><span class="block text-sm font-extrabold"
+                      >Google Play</span
+                    ></span
+                  >
+                </a>
+                <a
+                  href="#login"
+                  class="inline-flex items-center justify-center gap-3 rounded-xl border border-white/20 px-5 py-3.5 transition hover:bg-white/10"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.1 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.7.8-3.4.8-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.1 8.9.7 1.1 1.5 2.2 2.6 2.1 1-.1 1.4-.7 2.7-.7s1.7.7 2.8.7 1.8-1.1 2.5-2.2c.8-1.2 1.1-2.4 1.1-2.4s-2.3-.9-2.3-3.7ZM14.8 6.2c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.7-1.1 1.6-1 2.6 1 .1 2-.5 2.7-1.2Z"
+                    />
+                  </svg>
+                  <span class="text-left"
+                    ><span class="block text-[10px]">DOWNLOAD ON THE</span
+                    ><span class="block text-sm font-extrabold"
+                      >App Store</span
+                    ></span
+                  >
+                </a>
+              </div>
+              <p class="mt-4 text-xs text-slate-500">
+                *Fee-free withdrawals are not guaranteed. Confirm applicable
+                charges before using any real service.
+              </p>
+            </div>
+
+            <div class="relative mx-auto hidden w-full max-w-sm lg:block">
+              <div
+                class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur-sm"
+              >
+                <div class="flex items-center gap-4">
+                  <div
+                    class="grid h-14 w-14 place-items-center rounded-2xl bg-blue-500/20 text-2xl"
+                  >
+                    ↗
+                  </div>
+                  <div>
+                    <p class="font-bold">Your crypto journey</p>
+                    <p class="mt-1 text-sm text-slate-400">
+                      A dashboard concept
+                    </p>
+                  </div>
+                </div>
+                <div class="my-7 h-px bg-white/10"></div>
+                <div class="space-y-5">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-400">Portfolio overview</span
+                    ><span class="text-aqua">Designed</span>
+                  </div>
+                  <div class="h-1.5 overflow-hidden rounded-full bg-white/10">
+                    <div class="h-full w-4/5 rounded-full bg-blue-500"></div>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-400">Mobile experience</span
+                    ><span class="text-aqua">Responsive</span>
+                  </div>
+                  <div class="h-1.5 overflow-hidden rounded-full bg-white/10">
+                    <div class="h-full w-full rounded-full bg-cyan-400"></div>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-400">Live trading</span
+                    ><span class="text-amber-300">Not enabled</span>
+                  </div>
+                  <div class="h-1.5 overflow-hidden rounded-full bg-white/10">
+                    <div class="h-full w-0 rounded-full bg-amber-300"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Login / get started demo form -->
+      <section id="login" class="bg-mist px-5 py-16">
+        <div
+          class="mx-auto max-w-xl rounded-3xl border border-slate-200 bg-white p-7 shadow-card sm:p-9"
+        >
+          <div class="text-center">
+            <p
+              class="text-xs font-bold uppercase tracking-[.2em] text-blue-600"
+            >
+              Explore the demo
+            </p>
+            <h2 class="mt-3 text-2xl font-extrabold text-navy">
+              Get started with Davault Defi
+            </h2>
+            <p class="mt-3 text-sm leading-6 text-slate-500">
+              This front-end preview does not create accounts or process logins.
+              Connect a secure backend before accepting real user information.
+            </p>
+          </div>
+          <form id="demo-form" class="mt-7 space-y-4">
+            <div>
+              <label
+                for="demo-email"
+                class="mb-2 block text-sm font-semibold text-slate-700"
+                >Email address</label
+              >
+              <input
+                id="demo-email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@example.com"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full rounded-xl bg-blue-600 px-5 py-3.5 font-bold text-white transition hover:bg-blue-500"
+            >
+              Request demo information
+            </button>
+            <p
+              id="form-message"
+              class="hidden rounded-xl bg-blue-50 p-3 text-sm text-blue-800"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+          <p class="mt-4 text-center text-xs leading-5 text-slate-400">
+            Demo only: the form does not transmit or store your email.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="support" class="bg-midnight text-white">
+      <div class="mx-auto max-w-7xl px-5 pb-8 pt-14 lg:px-8">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="lg:col-span-2">
+            <a href="#home" class="inline-flex items-center gap-3">
+              <span
+                class="grid h-10 w-10 place-items-center rounded-xl bg-blue-600 font-extrabold"
+                >D</span
+              >
+              <span class="text-xl font-extrabold"
+                >Davault<span class="text-blue-400"> Defi</span></span
+              >
+            </a>
+            <p class="mt-5 max-w-md text-sm leading-7 text-slate-400">
+              A modern landing-page concept for a digital-asset platform. Review
+              the real service, its operator, its terms and its regulatory
+              status before making any financial decision.
+            </p>
+            <a
+              href="mailto:support@devault.com"
+              class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-300 transition hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+              support@devault.com
+            </a>
+          </div>
+
+          <div>
+            <h3 class="font-bold">Explore</h3>
+            <ul class="mt-5 space-y-3 text-sm text-slate-400">
+              <li><a class="hover:text-white" href="#features">Features</a></li>
+              <li><a class="hover:text-white" href="#security">Security</a></li>
+              <li>
+                <a class="hover:text-white" href="#about">About Davault</a>
+              </li>
+              <li><a class="hover:text-white" href="#support">Support</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold">Important information</h3>
+            <ul class="mt-5 space-y-3 text-sm text-slate-400">
+              <li>
+                <a class="hover:text-white" href="#risk-disclosure"
+                  >Risk disclosure</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-white" href="#risk-disclosure"
+                  >Jurisdiction restrictions</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-white" href="#risk-disclosure"
+                  >Fees and terms</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          id="risk-disclosure"
+          class="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6"
+        >
+          <h3 class="text-sm font-bold text-slate-200">
+            Risk disclosure and jurisdictional restrictions
+          </h3>
+          <div class="mt-3 space-y-3 text-xs leading-6 text-slate-400">
+            <p>
+              Cryptocurrency and other digital-asset markets are volatile and
+              can result in the loss of some or all of your invested funds. Past
+              performance does not guarantee future results. Nothing on this
+              concept page constitutes financial, investment, tax or legal
+              advice, an offer to sell, or a solicitation to buy any asset.
+            </p>
+            <p>
+              Spot trading, derivatives, margin trading, borrowing and leveraged
+              products carry different risks. Leverage can magnify losses and
+              may result in rapid liquidation. These products are not suitable
+              for everyone.
+            </p>
+            <p>
+              Availability of digital-asset services depends on applicable laws,
+              regulatory approvals and the user's jurisdiction. Some assets,
+              products or services may be restricted or unavailable. Confirm the
+              operator's identity, licensing, terms, fees, custody arrangements
+              and eligibility requirements independently.
+            </p>
+            <p>
+              No claim of FDIC insurance, crypto insurance, cold storage,
+              regulatory authorization or financial transparency is made by this
+              demo. Cryptocurrency holdings are not automatically covered by
+              FDIC deposit insurance. Any protection must be verified against
+              the actual provider, account type and applicable rules.
+            </p>
+            <p>
+              Market symbols and displayed prices are illustrative placeholders,
+              not live quotes or investment recommendations. App-store buttons,
+              account links and demo forms require integration before production
+              use.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <p>© <span id="year"></span> Davault Defi. All rights reserved.</p>
+          <p>Concept design · Built for responsive screens</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Responsive mobile navigation
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation menu" : "Close navigation menu",
+        );
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+        });
+      });
+
+      // Illustrative ticker only — replace with a trusted market-data API for live quotes.
+      const assets = [
+        { name: "S&P 500", symbol: "SPX", price: "5,842.10", change: "+0.42%" },
+        { name: "US 100", symbol: "NDX", price: "20,140.25", change: "+0.68%" },
+        {
+          name: "EUR/USD",
+          symbol: "EUR/USD",
+          price: "1.0842",
+          change: "-0.12%",
+        },
+        {
+          name: "Bitcoin",
+          symbol: "BTC",
+          price: "$67,420.00",
+          change: "+2.14%",
+        },
+        {
+          name: "Ethereum",
+          symbol: "ETH",
+          price: "$3,520.80",
+          change: "+1.38%",
+        },
+        { name: "Tether", symbol: "USDT", price: "$1.00", change: "+0.01%" },
+        { name: "XRP", symbol: "XRP", price: "$0.5842", change: "-0.86%" },
+      ];
+
+      function createTickerItems() {
+        return assets.map((asset) => {
+          const positive = asset.change.startsWith("+");
+          const item = document.createElement("div");
+          item.className =
+            "flex min-w-[190px] items-center gap-3 border-r border-slate-100 px-6";
+          item.innerHTML = `
+          <div class="min-w-0">
+            <p class="text-sm font-bold text-slate-800">${asset.name}</p>
+            <p class="mt-0.5 text-[10px] text-slate-400">${asset.symbol}</p>
+          </div>
+          <div class="ml-auto text-right">
+            <p class="text-sm font-semibold tabular-nums text-slate-700">${asset.price}</p>
+            <p class="mt-0.5 text-xs font-semibold ${positive ? "text-emerald-600" : "text-rose-600"}">${asset.change}</p>
+          </div>`;
+          return item;
+        });
+      }
+
+      const tickerItems = document.getElementById("ticker-items");
+      const tickerCopy = document.getElementById("ticker-items-copy");
+      [...createTickerItems()].forEach((item) => tickerItems.appendChild(item));
+      [...createTickerItems()].forEach((item) => tickerCopy.appendChild(item));
+
+      const planSelection = document.getElementById("plan-selection");
+      document.querySelectorAll("[data-plan]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll("[data-plan]").forEach((planButton) => {
+            const selected = planButton === button;
+            planButton.setAttribute("aria-pressed", String(selected));
+            planButton
+              .closest("[data-plan-card]")
+              .classList.toggle("ring-2", selected);
+            planButton
+              .closest("[data-plan-card]")
+              .classList.toggle("ring-blue-500", selected);
+          });
+          planSelection.textContent = `${button.dataset.plan} selected. Preview only; no investment has been created.`;
+        });
+      });
+
+      // Demo form: no network request and no storage.
+      document
+        .getElementById("demo-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          const message = document.getElementById("form-message");
+          message.textContent =
+            "Thanks for your interest. This is a front-end demo, so no account was created and no information was sent.";
+          message.classList.remove("hidden");
+          event.target.reset();
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
