@@ -1,0 +1,340 @@
+<!-- from pathlib import Path
+
+html = r''' -->
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d16">
+<meta name="description" content="Compare Davault Defi platform plans and review terms before participating.">
+<title>Plans | Davault Defi</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { navy: '#090d16', panel: '#101827', accent: '#4d8dff', muted: '#9ba8bd' },
+      boxShadow: { glow: '0 0 34px rgba(65,132,255,.18)' }
+    }
+  }
+}
+</script>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { margin:0; background:#090d16; color:#f7f9ff; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  .site-bg { background:radial-gradient(ellipse at 50% -10%,rgba(43,94,180,.2),transparent 42%),linear-gradient(180deg,#090d16,#0a101c 55%,#090d16); position:relative; isolation:isolate; }
+  .site-bg:before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.15; background-image:linear-gradient(rgba(115,151,208,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(115,151,208,.08) 1px,transparent 1px); background-size:48px 48px; mask-image:linear-gradient(to bottom,black,transparent 80%); }
+  .topline { height:3px; background:linear-gradient(90deg,transparent,#397dff,#68d7f5,transparent); }
+  .header { position:sticky; top:0; z-index:40; background:rgba(9,13,22,.88); backdrop-filter:blur(18px); border-bottom:1px solid rgba(155,180,222,.12); }
+  .brand-mark { display:grid;place-items:center;width:39px;height:39px;border:1px solid rgba(92,151,255,.5);border-radius:12px;background:linear-gradient(145deg,rgba(69,133,255,.25),rgba(20,31,53,.8));box-shadow:0 0 28px rgba(52,119,255,.16); }
+  .brand-mark svg { width:23px;height:23px; }
+  .nav-link { color:#b4bfd0;font-size:13px;transition:color .2s; }
+  .nav-link:hover,.nav-link[aria-current="page"] { color:#fff; }
+  .nav-cta,.btn-primary { background:linear-gradient(135deg,#4388ff,#2857c5);border:1px solid rgba(87,143,255,.55);color:#fff;box-shadow:0 8px 26px rgba(36,96,225,.18); }
+  .nav-cta { border-radius:999px;padding:10px 17px;font-size:12px;font-weight:650; }
+  .btn-primary:hover,.nav-cta:hover { box-shadow:0 0 30px rgba(67,132,255,.32);transform:translateY(-1px); }
+  .menu-toggle { display:none;border:1px solid rgba(155,180,222,.18);border-radius:10px;color:white;background:#101827;width:43px;height:43px; }
+  .eyebrow { display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(92,143,255,.29);background:rgba(35,75,145,.14);color:#a9c7ff;padding:8px 13px;border-radius:999px;font-size:10px;font-weight:750;letter-spacing:.14em;text-transform:uppercase; }
+  .eyebrow-dot { width:6px;height:6px;border-radius:50%;background:#68d7f5;box-shadow:0 0 12px #68d7f5; }
+  .gradient-text { background:linear-gradient(100deg,#fff 8%,#b6d2ff 55%,#64cbed);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .btn { display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:47px;padding:0 19px;border-radius:999px;font-size:12px;font-weight:700;transition:transform .2s,box-shadow .2s,border-color .2s; }
+  .btn-secondary { border:1px solid rgba(155,180,222,.18);background:rgba(255,255,255,.025);color:#dce5f4; }
+  .btn-secondary:hover { border-color:rgba(105,160,255,.5); }
+  .plan-card { position:relative;display:flex;flex-direction:column;border:1px solid rgba(155,180,222,.16);border-radius:20px;background:linear-gradient(150deg,rgba(18,29,48,.96),rgba(10,16,28,.98));padding:26px;transition:transform .25s,border-color .25s,box-shadow .25s; }
+  .plan-card:hover { transform:translateY(-5px);border-color:rgba(91,149,255,.48);box-shadow:0 22px 48px rgba(0,0,0,.22),0 0 28px rgba(52,119,255,.08); }
+  .plan-card.featured { border-color:rgba(80,143,255,.72);box-shadow:0 0 38px rgba(49,112,237,.14);background:radial-gradient(ellipse at 50% 0%,rgba(54,110,220,.18),transparent 55%),linear-gradient(150deg,#14233b,#0b1220); }
+  .plan-card.featured:before { content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(135deg,rgba(106,174,255,.65),transparent 42%,rgba(67,132,255,.2));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none; }
+  .plan-badge { display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(101,158,255,.3);background:rgba(49,101,194,.14);color:#a9c7ff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase; }
+  .plan-name { font-size:21px;font-weight:750;letter-spacing:-.04em; }
+  .plan-desc { color:#96a5bb;font-size:12px;line-height:1.7;min-height:40px; }
+  .rate-box { margin:20px 0 18px;padding:17px;border-radius:14px;border:1px solid rgba(155,180,222,.13);background:rgba(5,10,18,.35); }
+  .rate-label { color:#8191a8;font-size:10px;text-transform:uppercase;letter-spacing:.12em; }
+  .rate-value { font-size:29px;font-weight:800;letter-spacing:-.05em;color:#f8fbff; }
+  .rate-value.placeholder { font-size:20px;letter-spacing:-.02em;color:#a8c7ff; }
+  .rate-caption { color:#8e9eb4;font-size:11px; }
+  .plan-facts { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 20px; }
+  .fact { border:1px solid rgba(155,180,222,.1);border-radius:11px;padding:11px;background:rgba(255,255,255,.018); }
+  .fact span { display:block;color:#8191a8;font-size:9px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px; }
+  .fact strong { font-size:12px;font-weight:700;color:#e5edfb; }
+  .feature-list { display:grid;gap:11px;margin:0 0 25px;padding:0;list-style:none;color:#b3bfd1;font-size:11px; }
+  .feature-list li { display:flex;align-items:flex-start;gap:9px;line-height:1.6; }
+  .check { color:#7bb2ff;font-size:14px;line-height:1.2; }
+  .plan-card .btn { width:100%;margin-top:auto; }
+  .section-rule { border-top:1px solid rgba(155,180,222,.12); }
+  .info-card { border:1px solid rgba(155,180,222,.14);border-radius:16px;background:linear-gradient(150deg,rgba(18,29,48,.75),rgba(10,16,28,.8));padding:22px; }
+  .faq-item { border-bottom:1px solid rgba(155,180,222,.12); }
+  .faq-item summary { list-style:none;cursor:pointer;padding:19px 0;color:#e7eefb;font-size:13px;font-weight:650;display:flex;justify-content:space-between;gap:16px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary:after { content:"+";color:#85b3ff;font-size:19px;line-height:1; }
+  .faq-item[open] summary:after { content:"−"; }
+  .faq-item p { color:#9ba8bd;font-size:12px;line-height:1.85;margin:0;padding:0 24px 19px 0; }
+  .footer { border-top:1px solid rgba(155,180,222,.12);background:rgba(5,9,16,.65); }
+  .footer-link { color:#8997ad;font-size:12px;transition:color .2s; }
+  .footer-link:hover { color:#fff; }
+  :focus-visible { outline:2px solid #8ab5ff;outline-offset:4px; }
+  @media(max-width:900px) { .menu-toggle{display:grid;place-items:center}.nav-menu{display:none;position:absolute;top:72px;left:0;right:0;padding:17px 22px 23px;background:rgba(9,13,22,.98);border-bottom:1px solid rgba(155,180,222,.12)}.nav-menu.open{display:flex;flex-direction:column;align-items:stretch;gap:0}.nav-menu .nav-link{padding:13px 4px;border-bottom:1px solid rgba(155,180,222,.08)}.nav-menu .nav-cta{margin-top:14px;text-align:center}.plan-card{padding:22px} }
+  @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important} }
+</style>
+</head>
+<body class="site-bg min-h-screen">
+<div class="topline"></div>
+<header class="header">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 h-[76px] flex items-center justify-between gap-5 relative">
+    <a class="flex items-center gap-3 shrink-0" href="index.html" aria-label="Davault Defi home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5h7.2a6.5 6.5 0 1 1 0 13H4v-13Z" stroke="#8AB5FF" stroke-width="1.7"/><path d="M8 9h3.3a3 3 0 1 1 0 6H8V9Z" fill="#4D8DFF"/><path d="M15.8 5.5h4.2M17.9 3.5v4" stroke="#68D7F5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      <span><span class="block text-[16px] font-extrabold tracking-tight">Davault <span class="text-blue-400">Defi</span></span><span class="block text-[9px] tracking-[.19em] uppercase text-slate-500 mt-1">Digital asset intelligence</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNav">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="primaryNav" class="nav-menu flex items-center gap-7" aria-label="Main navigation">
+      <a class="nav-link" href="index.html#home">Home</a>
+      <a class="nav-link" href="index.html#features">Platform</a>
+      <a class="nav-link" href="index.html#markets">Markets</a>
+      <a class="nav-link" href="about.html">About Us</a>
+      <a class="nav-link" href="index.html#faq">FAQ</a>
+      <a class="nav-cta" href="index.html#get-started">Explore the platform ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="px-5 pt-16 pb-12 md:pt-24 md:pb-16">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>A new perspective on digital assets</div>
+      <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-.055em] leading-[1.08]">Choose a plan that fits your <span class="gradient-text">strategy.</span></h1>
+      <p class="max-w-2xl mx-auto mt-6 text-sm sm:text-base leading-8 text-slate-400">Explore Davault Defi plan tiers and compare the details that matter. Review eligibility, fees, terms, and risk disclosures carefully before making any financial decision.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a class="btn btn-primary" href="#plans">Compare plans <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-secondary" href="#faq">Understand the terms</a>
+      </div>
+      <p class="mt-5 text-[11px] text-slate-500">Plan details should be confirmed in the official product terms before launch.</p>
+    </div>
+  </section>
+
+  <section id="plans" class="section-rule px-5 py-14 md:py-20">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-9">
+        <div>
+          <p class="text-[10px] font-extrabold tracking-[.2em] uppercase text-blue-300 mb-3">Investment plan overview</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Five tiers. One clear comparison.</h2>
+        </div>
+        <p class="max-w-xl text-sm leading-7 text-slate-400">The exact Sagacious Teck rates and terms could not be reliably verified from the provided website during research. Fields marked “Confirm details” are intentional placeholders—not published offers or estimated returns.</p>
+      </div>
+
+      <!-- Replace every "Confirm details" placeholder only after verifying the official terms. -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+        <article class="plan-card">
+          <div class="flex justify-between items-start gap-2"><span class="plan-badge">Entry tier</span></div>
+          <h3 class="plan-name mt-5">Basic</h3>
+          <p class="plan-desc mt-2">For users exploring the platform and its core tools.</p>
+          <div class="rate-box"><div class="rate-label">Daily ROI</div><div class="rate-value placeholder mt-2">Confirm details</div><div class="rate-caption mt-1">No rate assumed</div></div>
+          <div class="plan-facts">
+            <div class="fact"><span>Minimum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Maximum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Term</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Billing</span><strong>Confirm</strong></div>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span>Core plan information</span></li>
+            <li><span class="check">✓</span><span>Published fee schedule required</span></li>
+            <li><span class="check">✓</span><span>Withdrawal terms to be confirmed</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="index.html#get-started">View plan details ↗</a>
+        </article>
+
+        <article class="plan-card">
+          <div class="flex justify-between items-start gap-2"><span class="plan-badge">Step up</span></div>
+          <h3 class="plan-name mt-5">Silver</h3>
+          <p class="plan-desc mt-2">A broader tier for users comparing additional options.</p>
+          <div class="rate-box"><div class="rate-label">Daily ROI</div><div class="rate-value placeholder mt-2">Confirm details</div><div class="rate-caption mt-1">No rate assumed</div></div>
+          <div class="plan-facts">
+            <div class="fact"><span>Minimum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Maximum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Term</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Billing</span><strong>Confirm</strong></div>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span>Plan terms should be displayed upfront</span></li>
+            <li><span class="check">✓</span><span>Fees and payout timing to be confirmed</span></li>
+            <li><span class="check">✓</span><span>Risk information before commitment</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="index.html#get-started">View plan details ↗</a>
+        </article>
+
+        <article class="plan-card featured">
+          <div class="flex justify-between items-start gap-2"><span class="plan-badge">Popular config</span><span class="text-blue-200 text-lg" aria-hidden="true">✦</span></div>
+          <h3 class="plan-name mt-5">Diamond</h3>
+          <p class="plan-desc mt-2">A highlighted tier for comparing expanded plan features.</p>
+          <div class="rate-box"><div class="rate-label">Daily ROI</div><div class="rate-value placeholder mt-2">Confirm details</div><div class="rate-caption mt-1">No rate assumed</div></div>
+          <div class="plan-facts">
+            <div class="fact"><span>Minimum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Maximum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Term</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Billing</span><strong>Confirm</strong></div>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span>Clear terms and eligibility criteria</span></li>
+            <li><span class="check">✓</span><span>Withdrawal rules to be confirmed</span></li>
+            <li><span class="check">✓</span><span>No implied or guaranteed performance</span></li>
+          </ul>
+          <a class="btn btn-primary" href="index.html#get-started">Explore Diamond ↗</a>
+        </article>
+
+        <article class="plan-card">
+          <div class="flex justify-between items-start gap-2"><span class="plan-badge">Advanced</span></div>
+          <h3 class="plan-name mt-5">Pro</h3>
+          <p class="plan-desc mt-2">For experienced users assessing advanced options.</p>
+          <div class="rate-box"><div class="rate-label">Daily ROI</div><div class="rate-value placeholder mt-2">Confirm details</div><div class="rate-caption mt-1">No rate assumed</div></div>
+          <div class="plan-facts">
+            <div class="fact"><span>Minimum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Maximum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Term</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Billing</span><strong>Confirm</strong></div>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span>Full fee schedule required</span></li>
+            <li><span class="check">✓</span><span>Risk and liquidity details required</span></li>
+            <li><span class="check">✓</span><span>Support terms to be confirmed</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="index.html#get-started">View plan details ↗</a>
+        </article>
+
+        <article class="plan-card">
+          <div class="flex justify-between items-start gap-2"><span class="plan-badge">Premium</span></div>
+          <h3 class="plan-name mt-5">Premium</h3>
+          <p class="plan-desc mt-2">A top-tier option whose terms should be reviewed closely.</p>
+          <div class="rate-box"><div class="rate-label">Daily ROI</div><div class="rate-value placeholder mt-2">Confirm details</div><div class="rate-caption mt-1">No rate assumed</div></div>
+          <div class="plan-facts">
+            <div class="fact"><span>Minimum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Maximum</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Term</span><strong>Confirm</strong></div>
+            <div class="fact"><span>Billing</span><strong>Confirm</strong></div>
+          </div>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span>Eligibility and limits to be confirmed</span></li>
+            <li><span class="check">✓</span><span>Withdrawal timing to be confirmed</span></li>
+            <li><span class="check">✓</span><span>Independent risk assessment encouraged</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="index.html#get-started">View plan details ↗</a>
+        </article>
+      </div>
+
+      <div class="mt-6 flex items-start gap-3 rounded-xl border border-blue-400/20 bg-blue-400/[.05] p-4 text-xs leading-6 text-slate-300">
+        <span class="text-blue-300 text-base" aria-hidden="true">ⓘ</span>
+        <p><strong class="text-white">Implementation note:</strong> Weekly/monthly USD pricing, minimum and maximum deposits, ROI, and term lengths have intentionally not been fabricated. Replace these placeholders with verified figures and the actual contractual conditions before accepting deposits or publishing this as an investment offer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparison" class="section-rule px-5 py-14 md:py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-2xl mb-8">
+        <p class="text-[10px] font-extrabold tracking-[.2em] uppercase text-blue-300 mb-3">Compare with confidence</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">What to check before choosing</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-400">A clear plan page should explain the full economics and the restrictions—not just a headline percentage.</p>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full min-w-[680px] text-left text-xs">
+          <thead class="bg-white/[.04] text-slate-200">
+            <tr><th class="p-4 font-semibold">Plan detail</th><th class="p-4 font-semibold">What should be published</th><th class="p-4 font-semibold">Why it matters</th></tr>
+          </thead>
+          <tbody class="divide-y divide-white/[.08] text-slate-400">
+            <tr><td class="p-4 text-slate-200">Pricing / fees</td><td class="p-4">All charges in USD, including network or service fees</td><td class="p-4">Shows the actual cost of participation</td></tr>
+            <tr><td class="p-4 text-slate-200">Return metric</td><td class="p-4">Rate basis, calculation method, variability, and whether illustrative</td><td class="p-4">Avoids misleading comparisons</td></tr>
+            <tr><td class="p-4 text-slate-200">Deposit boundaries</td><td class="p-4">Minimum, maximum, supported assets, and any limits by account</td><td class="p-4">Clarifies eligibility</td></tr>
+            <tr><td class="p-4 text-slate-200">Term / lock-up</td><td class="p-4">Start date, maturity, renewal, and early-exit rules</td><td class="p-4">Explains access to funds</td></tr>
+            <tr><td class="p-4 text-slate-200">Withdrawals</td><td class="p-4">Request process, processing window, fees, and conditions</td><td class="p-4">Sets realistic liquidity expectations</td></tr>
+            <tr><td class="p-4 text-slate-200">Custody / security</td><td class="p-4">Who controls assets, key management, audits, and incident response</td><td class="p-4">Helps users assess operational risk</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-rule px-5 py-14 md:py-20">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-[.8fr_1.2fr] gap-10">
+      <div>
+        <p class="text-[10px] font-extrabold tracking-[.2em] uppercase text-blue-300 mb-3">Frequently asked questions</p>
+        <h2 class="text-3xl font-bold tracking-tight">The details matter.</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-400">Always rely on current, official plan documents and account terms—not assumptions based on a card design.</p>
+      </div>
+      <div>
+        <details class="faq-item" open><summary>Are returns or daily ROI guaranteed?</summary><p>No return should be treated as guaranteed unless a valid, enforceable agreement explicitly states the terms and the provider can substantiate the claim. Digital assets can be volatile, and users may lose some or all of their funds. Avoid relying on headline percentages alone.</p></details>
+        <details class="faq-item"><summary>How long do withdrawals take?</summary><p>Withdrawal timing depends on the published policy, asset network, custody arrangements, compliance checks, and any lock-up or maturity conditions. Davault Defi should state its actual processing windows and fees here before launch; this template does not assume a timeline.</p></details>
+        <details class="faq-item"><summary>Can I exit before a plan matures?</summary><p>Early withdrawal rules are plan-specific. The final page should clearly disclose whether early exits are allowed, whether penalties apply, and whether any principal or reward can be delayed or lost. Confirm these rules in the signed terms.</p></details>
+        <details class="faq-item"><summary>What security measures protect my assets?</summary><p>Publish only verifiable security claims, including custody arrangements, access controls, key management, audits, incident reporting, and the limits of any protections. A dark-themed interface or security badge is not evidence that funds are risk-free.</p></details>
+        <details class="faq-item"><summary>Are weekly or monthly plan prices subscription fees?</summary><p>This must be stated explicitly in the official plan documentation. Distinguish platform subscription charges from investment deposits, trading fees, network fees, and any other charges. The figures are left unfilled here because the reference prices could not be verified.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-5 pb-16 md:pb-24">
+    <div class="max-w-6xl mx-auto rounded-2xl border border-amber-300/20 bg-amber-300/[.045] p-6 md:p-8">
+      <div class="flex items-start gap-4">
+        <div class="grid place-items-center w-10 h-10 shrink-0 rounded-xl border border-amber-200/20 bg-amber-200/[.08] text-amber-200" aria-hidden="true">!</div>
+        <!-- <div>
+          <h2 class="text-lg font-bold text-white">Important risk notice</h2>
+          <p class="mt-3 text-xs sm:text-sm leading-7 text-slate-300">Digital assets and decentralized finance involve significant risks, including price volatility, smart-contract vulnerabilities, custody failures, liquidity restrictions, regulatory changes, and possible total loss of capital. Any displayed return, if added later, must be accurate, clearly qualified, and supported by the actual product terms. This page is for general information and is not financial, investment, legal, or tax advice. Verify applicable licensing, legal eligibility, risk disclosures, and compliance obligations before offering investment products or accepting funds.</p>
+        </div> -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+      <div class="col-span-2 md:col-span-1">
+        <a class="flex items-center gap-3" href="index.html" aria-label="Davault Defi home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5h7.2a6.5 6.5 0 1 1 0 13H4v-13Z" stroke="#8AB5FF" stroke-width="1.7"/><path d="M8 9h3.3a3 3 0 1 1 0 6H8V9Z" fill="#4D8DFF"/><path d="M15.8 5.5h4.2M17.9 3.5v4" stroke="#68D7F5" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span><span class="block text-[16px] font-extrabold tracking-tight">Davault <span class="text-blue-400">Defi</span></span><span class="block text-[9px] tracking-[.19em] uppercase text-slate-500 mt-1">Digital asset intelligence</span></span>
+        </a>
+        <p class="max-w-xs mt-4 text-xs leading-6 text-slate-500">A modern perspective on digital assets, built around clarity, considered technology, and user choice.</p>
+      </div>
+      <div><h3 class="text-[11px] font-bold tracking-widest uppercase text-slate-200 mb-4">Explore</h3><div class="grid gap-3"><a class="footer-link" href="index.html#home">Home</a><a class="footer-link" href="index.html#features">Platform features</a><a class="footer-link" href="index.html#markets">Markets</a><a class="footer-link" href="about.html">About Us</a></div></div>
+      <div><h3 class="text-[11px] font-bold tracking-widest uppercase text-slate-200 mb-4">Plans &amp; help</h3><div class="grid gap-3"><a class="footer-link" href="#plans">Compare plans</a><a class="footer-link" href="#comparison">Plan comparison</a><a class="footer-link" href="#faq">FAQs</a><a class="footer-link" href="index.html#get-started">Get started</a></div></div>
+      <div><h3 class="text-[11px] font-bold tracking-widest uppercase text-slate-200 mb-4">Legal</h3><div class="grid gap-3"><a class="footer-link" href="index.html#privacy">Privacy policy</a><a class="footer-link" href="index.html#terms">Terms of service</a><a class="footer-link" href="#risk-notice" onclick="document.querySelector('.bg-amber-300\\/\\[\\.045\\]')?.scrollIntoView({behavior:'smooth'});return false;">Risk notice</a></div></div>
+    </div>
+    <div class="mt-10 pt-5 border-t border-white/[.08] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[10px] text-slate-600">
+      <span>© <span id="year"></span> Davault Defi. All rights reserved.</span><a class="footer-link" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
+    </div>
+    <p class="mt-4 text-[10px] leading-5 text-slate-600">Digital asset participation is not suitable for everyone. Past performance does not predict future results. Do your own independent research and consult qualified professionals where appropriate.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('primaryNav');
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const menuIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+  const closeIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>';
+  toggle.addEventListener('click', function () {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    toggle.innerHTML = open ? closeIcon : menuIcon;
+  });
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      toggle.innerHTML = menuIcon;
+    });
+  });
+})();
+</script>
+</body>
+</html>
+
+
+<!-- '''
+
+out = Path("/mnt/data/plans.html")
+out.write_text(html, encoding="utf-8")
+print(f"Created {out} ({out.stat().st_size:,} bytes)") -->
