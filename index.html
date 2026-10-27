@@ -96,6 +96,453 @@
         }
       }
     </style>
+
+    <style>
+      /* =========================================
+   DAVAULT DEFI — SERVICES SECTION
+========================================= */
+
+      .services-section {
+        --bg: #090d16;
+        --card: #101827;
+        --card-hover: #121f33;
+        --border: rgba(111, 157, 218, 0.17);
+        --blue: #69aaff;
+        --blue-light: #a4d0ff;
+        --text: #f5f8ff;
+        --muted: #98a7bd;
+
+        position: relative;
+        overflow: hidden;
+        padding: 110px 24px;
+        background:
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(30, 85, 160, 0.16),
+            transparent 48%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+
+      .services-section *,
+      .services-section *::before,
+      .services-section *::after {
+        box-sizing: border-box;
+      }
+
+      .services-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Heading */
+
+      .services-heading {
+        max-width: 720px;
+        margin: 0 auto 58px;
+        text-align: center;
+      }
+
+      .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 16px;
+        border: 1px solid rgba(105, 170, 255, 0.25);
+        border-radius: 100px;
+        background: rgba(36, 85, 145, 0.13);
+        color: var(--blue-light);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+      }
+
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--blue);
+        box-shadow: 0 0 12px rgba(105, 170, 255, 0.8);
+      }
+
+      .services-heading h2 {
+        margin: 24px 0 18px;
+        color: var(--text);
+        font-size: clamp(32px, 4.4vw, 54px);
+        font-weight: 750;
+        line-height: 1.15;
+        letter-spacing: -1.8px;
+      }
+
+      .gradient-text {
+        display: block;
+        padding-bottom: 5px;
+        background: linear-gradient(
+          100deg,
+          #f5f8ff 5%,
+          #8dbdff 52%,
+          #5a95f5 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .services-heading > p {
+        max-width: 590px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      /* Responsive grid */
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      /* Cards */
+
+      .service-card {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: linear-gradient(
+          145deg,
+          rgba(19, 31, 49, 0.98),
+          rgba(12, 20, 33, 0.98)
+        );
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+        transition:
+          transform 300ms ease,
+          border-color 300ms ease,
+          box-shadow 300ms ease,
+          background 300ms ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(105, 170, 255, 0.55);
+        background: var(--card-hover);
+        box-shadow:
+          0 20px 48px rgba(0, 0, 0, 0.27),
+          0 0 24px rgba(57, 126, 227, 0.08);
+      }
+
+      /* Illustration area */
+
+      .service-visual {
+        position: relative;
+        display: flex;
+        height: 205px;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(111, 157, 218, 0.12);
+        background-color: #0d1727;
+        background-image:
+          linear-gradient(rgba(113, 157, 214, 0.045) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(113, 157, 214, 0.045) 1px,
+            transparent 1px
+          );
+        background-size: 28px 28px;
+      }
+
+      .service-visual::after {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(58, 123, 213, 0.13),
+          transparent 70%
+        );
+        content: "";
+        pointer-events: none;
+      }
+
+      .service-visual svg {
+        position: relative;
+        z-index: 1;
+        width: 132px;
+        height: 110px;
+        overflow: visible;
+        filter: drop-shadow(0 0 13px rgba(73, 155, 255, 0.12));
+        transition: transform 400ms ease;
+      }
+
+      .service-card:hover .service-visual svg {
+        transform: scale(1.08) translateY(-3px);
+      }
+
+      .visual-number,
+      .visual-label {
+        position: absolute;
+        z-index: 2;
+        color: #8095b3;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+      }
+
+      .visual-number {
+        top: 17px;
+        left: 18px;
+      }
+
+      .visual-label {
+        right: 17px;
+        bottom: 15px;
+      }
+
+      /* Market-specific accents */
+
+      .real-estate {
+        --market-glow: rgba(70, 134, 225, 0.13);
+        background-color: #0d1727;
+      }
+
+      .forex {
+        background-color: #0c1829;
+      }
+
+      .energy {
+        background-color: #111a29;
+      }
+
+      .crypto {
+        background-color: #10162a;
+      }
+
+      .agriculture {
+        background-color: #101c27;
+      }
+
+      .retirement {
+        background-color: #111a2a;
+      }
+
+      .agriculture::after {
+        background: radial-gradient(
+          ellipse at center,
+          rgba(76, 174, 126, 0.12),
+          transparent 70%
+        );
+      }
+
+      .retirement svg {
+        filter: drop-shadow(0 0 13px rgba(105, 170, 255, 0.12));
+      }
+
+      /* Card text */
+
+      .service-content {
+        display: flex;
+        min-height: 258px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 25px 23px;
+      }
+
+      .service-category {
+        margin-bottom: 12px;
+        color: var(--blue);
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 1.45px;
+      }
+
+      .service-content h3 {
+        margin: 0 0 12px;
+        color: var(--text);
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+      }
+
+      .service-content p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.85;
+      }
+
+      /* Read More link */
+
+      .service-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+        padding: 0 0 5px;
+        border-bottom: 1px solid rgba(105, 170, 255, 0.28);
+        color: var(--blue-light);
+        font-size: 13px;
+        font-weight: 650;
+        text-decoration: none;
+        transition:
+          gap 250ms ease,
+          color 250ms ease,
+          border-color 250ms ease;
+      }
+
+      .service-link span {
+        display: inline-block;
+        font-size: 17px;
+        line-height: 1;
+        transition: transform 250ms ease;
+      }
+
+      .service-link:hover {
+        gap: 15px;
+        border-color: var(--blue);
+        color: #ffffff;
+      }
+
+      .service-link:hover span {
+        transform: translate(2px, -2px);
+      }
+
+      .service-link:focus-visible {
+        outline: 2px solid var(--blue-light);
+        outline-offset: 5px;
+        border-radius: 2px;
+      }
+
+      /* Footer */
+
+      .services-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        margin-top: 58px;
+      }
+
+      .services-footer p {
+        margin: 0;
+        color: #8293ad;
+        font-size: 12px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      .footer-line {
+        width: 55px;
+        height: 1px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(105, 170, 255, 0.5)
+        );
+      }
+
+      /* Tablet */
+
+      @media (max-width: 950px) {
+        .services-section {
+          padding: 85px 22px;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 20px;
+        }
+
+        .service-visual {
+          height: 195px;
+        }
+
+        .service-content {
+          min-height: 245px;
+          padding: 23px;
+        }
+      }
+
+      /* Mobile */
+
+      @media (max-width: 560px) {
+        .services-section {
+          padding: 68px 17px;
+        }
+
+        .services-heading {
+          margin-bottom: 36px;
+        }
+
+        .services-heading h2 {
+          font-size: 34px;
+          letter-spacing: -1.2px;
+        }
+
+        .services-heading > p {
+          font-size: 14px;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        .service-visual {
+          height: 200px;
+        }
+
+        .service-content {
+          min-height: 0;
+          padding: 24px;
+        }
+
+        .service-content p {
+          margin-bottom: 24px;
+        }
+
+        .services-footer {
+          gap: 12px;
+          margin-top: 38px;
+        }
+
+        .services-footer p {
+          max-width: 250px;
+          font-size: 11px;
+        }
+
+        .footer-line {
+          width: 20px;
+        }
+      }
+
+      /* Respect reduced-motion preferences */
+
+      @media (prefers-reduced-motion: reduce) {
+        .service-card,
+        .service-visual svg,
+        .service-link,
+        .service-link span {
+          transition: none;
+        }
+
+        .service-card:hover {
+          transform: none;
+        }
+      }
+    </style>
   </head>
 
   <body class="bg-white text-slate-900 antialiased">
@@ -108,7 +555,7 @@
         aria-label="Main navigation"
       >
         <a
-          href="index.html"
+          href="#home"
           class="flex items-center gap-3"
           aria-label="Davault Defi home"
         >
@@ -137,11 +584,13 @@
         <div
           class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex"
         >
-          <!-- <a class="transition hover:text-white" href="#features">About Us</a> -->
           <a class="transition hover:text-white" href="about.html">About Us</a>
-          <a class="transition hover:text-white" href="plans.html">Investment Plans</a>
-          <a class="transition hover:text-white" href="services.html">Services</a>
-          <!-- <a class="transition hover:text-white" href="#about">About Us</a> -->
+          <a class="transition hover:text-white" href="services.html"
+            >Services</a
+          >
+          <a class="transition hover:text-white" href="plans.html"
+            >Investment Plan</a
+          >
           <a class="transition hover:text-white" href="#faq">FAQs</a>
         </div>
 
@@ -152,7 +601,7 @@
             >Login</a
           >
           <a
-            href="register.html"
+            href="reigster.html"
             class="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500"
             >Get Started <span aria-hidden="true">↗</span></a
           >
@@ -184,25 +633,16 @@
         class="hidden border-t border-white/10 px-5 pb-5 pt-3 md:hidden"
       >
         <div class="flex flex-col gap-1 text-sm text-slate-200">
-          <!-- <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#features"
-            >Features</a
-          > -->
-        
-          <!-- <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#security"
-            >Security</a
-          > -->
           <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="about.html"
             >About Us</a
-          >
-        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="plans.html"
-            >Investment Plans</a
           >
           <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="services.html"
             >Services</a
           >
-          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#faq"
-            >FAQs</a
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="plans.html"
+            >Investment Plan</a
           >
+          <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#faq">FAQs</a>
           <div class="mt-3 grid grid-cols-2 gap-3">
             <a
               href="login.html"
@@ -210,7 +650,7 @@
               >Login</a
             >
             <a
-              href="register.html"
+              href="reigster.html"
               class="rounded-full bg-blue-600 py-3 text-center font-semibold"
               >Get Started</a
             >
@@ -926,169 +1366,276 @@
         </div>
       </section>
 
-      <!-- Illustrative investment plans -->
-      <section id="plans" class="bg-white px-5 py-20 sm:py-28">
-        <div class="mx-auto max-w-7xl lg:px-8">
-          <div class="mx-auto max-w-2xl text-center">
-            <p
-              class="text-xs font-bold uppercase tracking-[.22em] text-blue-600"
-            >
-              Choose your path to wealth
-            </p>
-            <h2
-              class="mt-4 text-3xl font-extrabold tracking-tight text-navy sm:text-5xl"
-            >
-              Tiered investment plans
+      <section class="services-section" id="services">
+        <div class="services-container">
+          <div class="services-heading">
+            <span class="section-badge">
+              <span class="badge-dot"></span>
+              OUR SERVICES
+            </span>
+
+            <h2>
+              Explore Our
+              <span class="gradient-text">Investment Markets</span>
             </h2>
-            <p class="mt-5 leading-7 text-slate-500">
-              Compare three sample plan concepts. Select a tier to preview it;
-              no funds are accepted and no investment is created.
+
+            <p>
+              Discover opportunities across diverse markets with tools and
+              insights designed to support informed financial decisions.
             </p>
           </div>
 
-          <div class="mt-12 grid items-stretch gap-6 lg:grid-cols-3">
-            <article
-              data-plan-card
-              class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card transition"
-            >
-              <p
-                class="text-sm font-bold uppercase tracking-wider text-slate-500"
-              >
-                Basic
-              </p>
-              <p class="mt-5 text-4xl font-extrabold text-navy">
-                1.50%<span class="ml-2 text-sm font-semibold text-slate-500"
-                  >daily sample rate</span
-                >
-              </p>
-              <p class="mt-2 text-sm text-slate-500">30-day term</p>
-              <ul
-                class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
-              >
-                <li class="flex justify-between gap-4">
-                  <span>Minimum deposit</span><strong>$100</strong>
-                </li>
-                <li class="flex justify-between gap-4">
-                  <span>Withdrawal access</span><strong>Instant*</strong>
-                </li>
-                <li class="flex justify-between gap-4">
-                  <span>Plan duration</span><strong>30 days</strong>
-                </li>
-              </ul>
-              <button
-                type="button"
-                data-plan="Basic"
-                aria-pressed="false"
-                class="mt-8 w-full rounded-xl border border-slate-300 px-5 py-3.5 font-bold text-navy transition hover:border-blue-500 hover:bg-blue-50"
-              >
-                Select Basic
-              </button>
-            </article>
-
-            <article
-              class="relative rounded-2xl bg-gradient-to-br from-cyan-300 via-blue-600 to-emerald-300 p-[2px] shadow-[0_0_34px_rgba(37,99,235,.24)]"
-            >
-              <div
-                data-plan-card
-                class="flex h-full flex-col rounded-[calc(1rem-2px)] bg-white p-7 transition"
-              >
-                <span
-                  class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-1.5 text-xs font-extrabold text-white shadow-lg shadow-blue-600/30"
-                  >Most Popular</span
-                >
-                <p
-                  class="mt-2 text-sm font-bold uppercase tracking-wider text-blue-700"
-                >
-                  Silver
+          <div class="services-grid">
+            <!-- Real Estate -->
+            <article class="service-card">
+              <div class="service-visual real-estate">
+                <span class="visual-number">01 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <path d="M12 87H108" stroke="#42618C"
+                  stroke-width="1.5"/>
+            <path d="M20 87V40L42 25L64 40V87"
+                  fill="#172D4B" stroke="#6CA8FF"
+                  stroke-width="1.5"/>
+            <path d="M42 25V13H54V87"
+                  fill="#203E63" stroke="#6CA8FF"
+                  stroke-width="1.5"/>
+            <path d="M64 87V51L84 36L103 51V87"
+                  fill="#14263E" stroke="#6CA8FF"
+                  stroke-width="1.5"/>
+            <g stroke="#82B9FF" stroke-width="2">
+              <path d="M29 49H35M29 59H35M29 69H35"/>
+              <path d="M43 34H49M43 44H49M43 54H49"/>
+              <path d="M74 57H79M89 57H94"/>
+              <path d="M74 68H79M89 68H94"/>
+            </g>
+          </svg> -->
+                <img src="/images/real-estate.jpg" alt="" />
+                <span class="visual-label">PROPERTY</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">REAL ASSETS</span>
+                <h3>Real Estate</h3>
+                <p>
+                  Explore property markets, real estate assets, and strategies
+                  focused on long-term value and potential income.
                 </p>
-                <p class="mt-5 text-4xl font-extrabold text-navy">
-                  1.80%<span class="ml-2 text-sm font-semibold text-slate-500"
-                    >daily sample rate</span
-                  >
-                </p>
-                <p class="mt-2 text-sm text-slate-500">30-day term</p>
-                <ul
-                  class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
-                >
-                  <li class="flex justify-between gap-4">
-                    <span>Minimum deposit</span><strong>$1,000</strong>
-                  </li>
-                  <li class="flex justify-between gap-4">
-                    <span>Withdrawal access</span><strong>Instant*</strong>
-                  </li>
-                  <li class="flex justify-between gap-4">
-                    <span>Plan duration</span><strong>30 days</strong>
-                  </li>
-                </ul>
-                <button
-                  type="button"
-                  data-plan="Silver"
-                  aria-pressed="false"
-                  class="mt-8 w-full rounded-xl bg-blue-600 px-5 py-3.5 font-bold text-white transition hover:bg-blue-500"
-                >
-                  Select Silver
-                </button>
+                <a class="service-link" href="/services/real-estate">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
 
-            <article
-              data-plan-card
-              class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card transition"
-            >
-              <p
-                class="text-sm font-bold uppercase tracking-wider text-slate-500"
-              >
-                Diamond
-              </p>
-              <p class="mt-5 text-4xl font-extrabold text-navy">
-                2.10%<span class="ml-2 text-sm font-semibold text-slate-500"
-                  >daily sample rate</span
-                >
-              </p>
-              <p class="mt-2 text-sm text-slate-500">30-day term</p>
-              <ul
-                class="mt-7 flex-1 space-y-4 border-t border-slate-100 pt-6 text-sm text-slate-700"
-              >
-                <li class="flex justify-between gap-4">
-                  <span>Minimum deposit</span><strong>$5,000</strong>
-                </li>
-                <li class="flex justify-between gap-4">
-                  <span>Withdrawal access</span><strong>Instant*</strong>
-                </li>
-                <li class="flex justify-between gap-4">
-                  <span>Plan duration</span><strong>30 days</strong>
-                </li>
-              </ul>
-              <button
-                type="button"
-                data-plan="Diamond"
-                aria-pressed="false"
-                class="mt-8 w-full rounded-xl border border-slate-300 px-5 py-3.5 font-bold text-navy transition hover:border-blue-500 hover:bg-blue-50"
-              >
-                Select Diamond
-              </button>
+            <!-- Forex Trading -->
+            <article class="service-card">
+              <div class="service-visual forex">
+                <span class="visual-number">02 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <path d="M12 83H108M12 62H108M12 41H108M12 20H108"
+                  stroke="#263D5B" stroke-width="1"/>
+            <path d="M15 71L31 58L43 65L59 38L73 46L91 20L105 29"
+                  stroke="#64A8FF" stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M15 71L31 58L43 65L59 38L73 46L91 20L105 29V83H15Z"
+                  fill="url(#forexFill)" opacity=".3"/>
+            <circle cx="91" cy="20" r="4"
+                    fill="#8DC4FF"/>
+            <defs>
+              <linearGradient id="forexFill"
+                x1="60" y1="20" x2="60" y2="83"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#499BFF"/>
+                <stop offset="1" stop-color="#499BFF"
+                      stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg> -->
+
+                <img src="/images/forex.jpg" alt="" />
+                <span class="visual-label">CURRENCY</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">GLOBAL MARKETS</span>
+                <h3>Forex Trading</h3>
+                <p>
+                  Study currency pairs, economic indicators, and market trends
+                  using fundamental and technical analysis.
+                </p>
+                <a class="service-link" href="/services/forex">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Oil & Gas -->
+            <article class="service-card">
+              <div class="service-visual energy">
+                <span class="visual-number">03 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <path d="M10 87H110" stroke="#42618C"
+                  stroke-width="1.5"/>
+            <path d="M30 87L47 25L64 87M36 65H58M39 51H54M43 38H51"
+                  stroke="#73B4FF" stroke-width="2"
+                  stroke-linecap="round"/>
+            <path d="M35 35H59M40 25H54M47 25V15"
+                  stroke="#73B4FF" stroke-width="2"/>
+            <path d="M71 87V48H95V87"
+                  fill="#18314F" stroke="#73B4FF"
+                  stroke-width="1.5"/>
+            <path d="M76 48V39H90V48M80 39V29H86V39"
+                  stroke="#73B4FF" stroke-width="1.5"/>
+            <path d="M76 60H81M86 60H91M76 70H81M86 70H91"
+                  stroke="#8FC5FF" stroke-width="2"/>
+          </svg> -->
+                <img src="/images/Oil & Gas.jpg" alt="" />
+                <span class="visual-label">ENERGY</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">COMMODITIES</span>
+                <h3>Oil &amp; Gas</h3>
+                <p>
+                  Understand global energy prices, supply and demand, commodity
+                  exposure, and risk-management approaches.
+                </p>
+                <a class="service-link" href="/services/oil-gas">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Cryptocurrency -->
+            <article class="service-card">
+              <div class="service-visual crypto">
+                <span class="visual-number">04 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <circle cx="60" cy="50" r="34"
+                    fill="#1A3150" stroke="#65A9FF"
+                    stroke-width="1.5"/>
+            <circle cx="60" cy="50" r="27"
+                    stroke="#3B6A9F" stroke-width="1"/>
+            <path d="M64 28V34M64 66V72"
+                  stroke="#8DC4FF" stroke-width="3"
+                  stroke-linecap="round"/>
+            <path d="M49 35H66C79 35 79 48 66 49H49M49 49H68C82 49 80 65 66 65H49M54 29V71"
+                  stroke="#8DC4FF" stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <circle cx="96" cy="22" r="5"
+                    fill="#6DB2FF" opacity=".7"/>
+            <circle cx="21" cy="75" r="4"
+                    fill="#6DB2FF" opacity=".5"/>
+          </svg> -->
+
+                <img src="/images/crypto.jpg" alt="" />
+                <span class="visual-label">DIGITAL ASSETS</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">DIGITAL FINANCE</span>
+                <h3>Cryptocurrency</h3>
+                <p>
+                  Explore digital assets, blockchain technology, and evolving
+                  crypto markets while assessing volatility and risk.
+                </p>
+                <a class="service-link" href="/services/cryptocurrency">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Agriculture -->
+            <article class="service-card">
+              <div class="service-visual agriculture">
+                <span class="visual-number">05 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <path d="M12 87H108" stroke="#42618C"
+                  stroke-width="1.5"/>
+            <path d="M60 87V35" stroke="#83C7A0"
+                  stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M60 54C43 54 35 43 36 32C51 32 60 40 60 54Z"
+                  fill="#234F48" stroke="#83C7A0"
+                  stroke-width="1.5"/>
+            <path d="M60 67C77 67 86 56 85 45C70 45 60 53 60 67Z"
+                  fill="#234F48" stroke="#83C7A0"
+                  stroke-width="1.5"/>
+            <path d="M60 42C49 32 49 20 60 13C71 20 71 32 60 42Z"
+                  fill="#2D6657" stroke="#83C7A0"
+                  stroke-width="1.5"/>
+            <path d="M60 87C42 82 29 82 17 87M60 87C79 82 92 82 103 87"
+                  stroke="#83C7A0" stroke-width="1.5"/>
+          </svg> -->
+
+                <img src="images/agric.jpg" alt="" />
+
+                <span class="visual-label">AGRICULTURE</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">AGRICULTURAL MARKETS</span>
+                <h3>Agriculture Sector</h3>
+                <p>
+                  Learn about agricultural commodities, seasonal trends, food
+                  supply chains, and global demand drivers.
+                </p>
+                <a class="service-link" href="/services/agriculture">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Retirement Fund -->
+            <article class="service-card">
+              <div class="service-visual retirement">
+                <span class="visual-number">06 / 06</span>
+                <!-- <svg viewBox="0 0 120 100" fill="none"
+               aria-hidden="true">
+            <rect x="22" y="16" width="76" height="70"
+                  rx="7" fill="#172D49"
+                  stroke="#6CA8FF" stroke-width="1.5"/>
+            <rect x="32" y="26" width="56" height="9"
+                  rx="3" fill="#29486D"/>
+            <path d="M34 69L47 56L57 62L76 43L87 48"
+                  stroke="#83C7A0" stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M78 43H87V52"
+                  stroke="#83C7A0" stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M34 77H86"
+                  stroke="#42618C" stroke-width="1.5"/>
+            <circle cx="60" cy="30" r="2"
+                    fill="#83C7A0"/>
+          </svg> -->
+
+                <img src="images/retire.jpg" alt="" />
+                <span class="visual-label">LONG-TERM PLANNING</span>
+              </div>
+              <div class="service-content">
+                <span class="service-category">FUTURE PLANNING</span>
+                <h3>Retirement Fund</h3>
+                <p>
+                  Build a long-term financial plan around your retirement goals,
+                  time horizon, diversification, and future income needs.
+                </p>
+                <a class="service-link" href="/services/retirement">
+                  Read More <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </article>
           </div>
 
-          <p
-            id="plan-selection"
-            class="mt-6 text-center text-sm font-semibold text-blue-800"
-            role="status"
-            aria-live="polite"
-          >
-            Choose a plan to preview your selection. Demo only; no investment is
-            created.
-          </p>
-          <p
-            class="mx-auto mt-5 max-w-4xl text-center text-xs leading-6 text-slate-500"
-          >
-            *All rates, deposit thresholds, terms and withdrawal claims shown
-            here are fictional UI examples, not actual offers or guaranteed
-            returns. Daily returns at these levels would involve extraordinary
-            risk. No real deposits, trading or withdrawals are available in this
-            demo. Never invest based on promised returns; verify any provider
-            and consult an independent financial professional.
-          </p>
+          <div class="services-footer">
+            <span class="footer-line"></span>
+            <p>
+              Make informed decisions. Understand the risks. Plan for your
+              financial future.
+            </p>
+            <span class="footer-line"></span>
+          </div>
         </div>
       </section>
 
@@ -1221,6 +1768,218 @@
         </div>
       </section>
 
+      <!-- Illustrative testimonials -->
+      <section
+        class="bg-white px-5 py-20 sm:py-24"
+        aria-labelledby="testimonials-heading"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="mx-auto max-w-2xl text-center">
+            <p
+              class="text-xs font-bold uppercase tracking-[.2em] text-blue-600"
+            >
+              What Our Community Says
+            </p>
+            <h2
+              id="testimonials-heading"
+              class="mt-3 text-3xl font-extrabold tracking-tight text-navy sm:text-4xl"
+            >
+              Designed around clarity and confidence
+            </h2>
+            <!-- <p class="mt-4 text-sm leading-6 text-slate-500">
+              Illustrative sample testimonials for this concept page; these are
+              not real customer reviews or endorsements.
+            </p> -->
+          </div>
+
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            <figure
+              class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card"
+            >
+              <div
+                class="flex gap-1 text-amber-400"
+                aria-label="Sample rating: 5 out of 5"
+              >
+                <span aria-hidden="true">★★★★★</span>
+              </div>
+              <blockquote
+                class="mt-5 flex-1 text-base leading-7 text-slate-600"
+              >
+                “The portfolio overview makes it easy to understand how the
+                experience is organized at a glance.”
+              </blockquote>
+              <figcaption class="mt-6 border-t border-slate-100 pt-5">
+                <p class="font-bold text-slate-900">Julian Davis</p>
+                <p class="mt-1 text-sm text-slate-500">Crypto Enthusiast</p>
+              </figcaption>
+            </figure>
+
+            <figure
+              class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card"
+            >
+              <div
+                class="flex gap-1 text-amber-400"
+                aria-label="Sample rating: 5 out of 5"
+              >
+                <span aria-hidden="true">★★★★★</span>
+              </div>
+              <blockquote
+                class="mt-5 flex-1 text-base leading-7 text-slate-600"
+              >
+                “As someone exploring forex and digital assets side-by-side,
+                having clear market watch indicators in one view concept is
+                brilliant”
+              </blockquote>
+              <figcaption class="mt-6 border-t border-slate-100 pt-5">
+                <p class="font-bold text-slate-900">Sarah Morales</p>
+                <p class="mt-1 text-sm text-slate-500">Private Investor</p>
+              </figcaption>
+            </figure>
+
+            <figure
+              class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-card"
+            >
+              <div
+                class="flex gap-1 text-amber-400"
+                aria-label="Sample rating: 5 out of 5"
+              >
+                <span aria-hidden="true">★★★★★</span>
+              </div>
+              <blockquote
+                class="mt-5 flex-1 text-base leading-7 text-slate-600"
+              >
+                “The clean layout feels straightforward to explore on both
+                desktop and mobile.”
+              </blockquote>
+              <figcaption class="mt-6 border-t border-slate-100 pt-5">
+                <p class="font-bold text-slate-900">Alexandre Kouassi</p>
+                <p class="mt-1 text-sm text-slate-500">Alexandre Kouassi</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section class="faq-section py-20 px-6 bg-[#0b0f19] text-white">
+        <div class="max-w-4xl mx-auto">
+          <!-- Section Header -->
+          <div class="text-center mb-16">
+            <span
+              class="text-xs font-semibold tracking-widest uppercase text-blue-400 bg-blue-950/50 px-3 py-1 rounded-full border border-blue-800/50"
+              >Got Questions?</span
+            >
+            <h2 class="text-3xl md:text-4xl font-bold mt-4">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-gray-400 mt-2 max-w-lg mx-auto">
+              Find answers to common questions about our platform concepts,
+              asset tracking, and security design.
+            </p>
+          </div>
+
+          <!-- FAQ List / Accordion style -->
+          <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div
+              class="bg-[#121826] border border-gray-800/80 rounded-2xl p-6 transition-all hover:border-gray-700 cursor-pointer"
+              onclick="toggleFaq('faq1', this)"
+            >
+              <h3
+                class="text-lg font-semibold text-white mb-2 flex justify-between items-center"
+              >
+                <span>Is this a live trading platform?</span>
+                <span
+                  class="faq-icon text-blue-400 text-xl font-normal transition-transform duration-300"
+                  >+</span
+                >
+              </h3>
+              <p
+                id="faq1"
+                class="text-gray-400 text-sm leading-relaxed max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+              >
+                No, Davault Defi is currently a concept landing page and
+                interactive frontend preview. Trading, live custody, deposits,
+                and withdrawals are not enabled in this demo.
+              </p>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div
+              class="bg-[#121826] border border-gray-800/80 rounded-2xl p-6 transition-all hover:border-gray-700 cursor-pointer"
+              onclick="toggleFaq('faq2', this)"
+            >
+              <h3
+                class="text-lg font-semibold text-white mb-2 flex justify-between items-center"
+              >
+                <span>How does the portfolio overview work?</span>
+                <span
+                  class="faq-icon text-blue-400 text-xl font-normal transition-transform duration-300"
+                  >+</span
+                >
+              </h3>
+              <p
+                id="faq2"
+                class="text-gray-400 text-sm leading-relaxed max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+              >
+                The dashboard provides an illustrative overview of digital asset
+                performance, market watches, and asset metrics to demonstrate
+                clean UI organization for multi-asset portfolios.
+              </p>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div
+              class="bg-[#121826] border border-gray-800/80 rounded-2xl p-6 transition-all hover:border-gray-700 cursor-pointer"
+              onclick="toggleFaq('faq3', this)"
+            >
+              <h3
+                class="text-lg font-semibold text-white mb-2 flex justify-between items-center"
+              >
+                <span>Are my investments covered by insurance?</span>
+                <span
+                  class="faq-icon text-blue-400 text-xl font-normal transition-transform duration-300"
+                  >+</span
+                >
+              </h3>
+              <p
+                id="faq3"
+                class="text-gray-400 text-sm leading-relaxed max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+              >
+                Cryptocurrency holdings are not automatically covered by FDIC
+                deposit insurance. Any actual protections, custody arrangements,
+                or security controls must be verified against the live
+                operator's terms.
+              </p>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div
+              class="bg-[#121826] border border-gray-800/80 rounded-2xl p-6 transition-all hover:border-gray-700 cursor-pointer"
+              onclick="toggleFaq('faq4', this)"
+            >
+              <h3
+                class="text-lg font-semibold text-white mb-2 flex justify-between items-center"
+              >
+                <span>How can I connect a backend or request more info?</span>
+                <span
+                  class="faq-icon text-blue-400 text-xl font-normal transition-transform duration-300"
+                  >+</span
+                >
+              </h3>
+              <p
+                id="faq4"
+                class="text-gray-400 text-sm leading-relaxed max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+              >
+                You can use the request demo form directly below this section or
+                reach out to our team via $\text{support@devault.com}$ for
+                integration and template inquiries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Login / get started demo form -->
       <section id="login" class="bg-mist px-5 py-16">
         <div
@@ -1316,12 +2075,18 @@
           <div>
             <h3 class="font-bold">Explore</h3>
             <ul class="mt-5 space-y-3 text-sm text-slate-400">
-              <li><a class="hover:text-white" href="#features">Plans</a></li>
-              <li><a class="hover:text-white" href="#security">Services</a></li>
               <li>
-                <a class="hover:text-white" href="about.html">About Us</a>
+                <a class="hover:text-white" href="about.html">About us</a>
               </li>
-              <li><a class="hover:text-white" href="#support">Support</a></li>
+              <li>
+                <a class="hover:text-white" href="services.html">Services</a>
+              </li>
+              <li>
+                <a class="hover:text-white" href="plans.html"
+                  >Inestment Plans</a
+                >
+              </li>
+              <li><a class="hover:text-white" href="#faq">FAQs</a></li>
             </ul>
           </div>
 
@@ -1346,51 +2111,6 @@
             </ul>
           </div>
         </div>
-
-        <div
-          id="risk-disclosure"
-          class="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6"
-        >
-          <h3 class="text-sm font-bold text-slate-200">
-            Risk disclosure and jurisdictional restrictions
-          </h3>
-          <div class="mt-3 space-y-3 text-xs leading-6 text-slate-400">
-            <p>
-              Cryptocurrency and other digital-asset markets are volatile and
-              can result in the loss of some or all of your invested funds. Past
-              performance does not guarantee future results. Nothing on this
-              concept page constitutes financial, investment, tax or legal
-              advice, an offer to sell, or a solicitation to buy any asset.
-            </p>
-            <p>
-              Spot trading, derivatives, margin trading, borrowing and leveraged
-              products carry different risks. Leverage can magnify losses and
-              may result in rapid liquidation. These products are not suitable
-              for everyone.
-            </p>
-            <p>
-              Availability of digital-asset services depends on applicable laws,
-              regulatory approvals and the user's jurisdiction. Some assets,
-              products or services may be restricted or unavailable. Confirm the
-              operator's identity, licensing, terms, fees, custody arrangements
-              and eligibility requirements independently.
-            </p>
-            <p>
-              No claim of FDIC insurance, crypto insurance, cold storage,
-              regulatory authorization or financial transparency is made by this
-              demo. Cryptocurrency holdings are not automatically covered by
-              FDIC deposit insurance. Any protection must be verified against
-              the actual provider, account type and applicable rules.
-            </p>
-            <p>
-              Market symbols and displayed prices are illustrative placeholders,
-              not live quotes or investment recommendations. App-store buttons,
-              account links and demo forms require integration before production
-              use.
-            </p>
-          </div>
-        </div>
-
         <div
           class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"
         >
@@ -1473,23 +2193,6 @@
       [...createTickerItems()].forEach((item) => tickerItems.appendChild(item));
       [...createTickerItems()].forEach((item) => tickerCopy.appendChild(item));
 
-      const planSelection = document.getElementById("plan-selection");
-      document.querySelectorAll("[data-plan]").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll("[data-plan]").forEach((planButton) => {
-            const selected = planButton === button;
-            planButton.setAttribute("aria-pressed", String(selected));
-            planButton
-              .closest("[data-plan-card]")
-              .classList.toggle("ring-2", selected);
-            planButton
-              .closest("[data-plan-card]")
-              .classList.toggle("ring-blue-500", selected);
-          });
-          planSelection.textContent = `${button.dataset.plan} selected. Preview only; no investment has been created.`;
-        });
-      });
-
       // Demo form: no network request and no storage.
       document
         .getElementById("demo-form")
@@ -1503,6 +2206,24 @@
         });
 
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+      function toggleFaq(id, element) {
+        const content = document.getElementById(id);
+        const icon = element.querySelector(".faq-icon");
+
+        // Toggle the max-height to expand/collapse smoothly
+        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+          content.style.maxHeight = "0px";
+          content.style.marginTop = "0px";
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.marginTop = "12px"; // Adds a little spacing when open
+          icon.style.transform = "rotate(45deg)"; // Turns the '+' into an 'x' effect
+        }
+      }
     </script>
   </body>
 </html>
